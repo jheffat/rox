@@ -6,14 +6,39 @@
 ROX is a Python command-line utility that recovers XOR encryption keys using known file signatures (magic headers).
 
 ---
+## 🗄️ Signature Database
 
-## ✨ Features
+ROX uses a file named **`dict.bin`** that contains known file signatures (magic headers) used during the analysis process.
 
-* 🔑 Recover XOR encryption keys
-* ⚡ Fast header analysis
-* 🧩 Signature-based detection
-* 🖥️ Simple command-line interface
-* 🪶 Lightweight and portable
+### 🔍 How It Works
+
+* 📂 `dict.bin` stores potential file header signatures.
+* 🔑 ROX compares these signatures against the encrypted file.
+* 🧩 The tool attempts to derive XOR keys capable of producing valid headers.
+* 🔄 Repeating patterns in the recovered data are analyzed to identify likely XOR keys.
+* 📄 Matching headers can help determine the original file type even when the file extension is missing or unknown.
+
+### 🎯 Purpose
+
+This functionality is particularly useful when analyzing files that have been obfuscated using a **single-byte XOR cipher** and the original file format is unknown.
+
+### 💡 Example Workflow
+
+```text
+Encrypted File
+       │
+       ▼
+Compare Against Signatures
+       │
+       ▼
+Generate XOR Key Candidates
+       │
+       ▼
+Detect Repeating Patterns
+       │
+       ▼
+Identify Likely Keys & File Types
+```
 
 ---
 
