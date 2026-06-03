@@ -9,7 +9,7 @@
 ║                            ║
 ║  XOR Header Key Analyzer   ║
 ╚════════════════════════════╝
-
+Author: Icodexys | Version: 1.0.0 Copyright (c) 2026 | Contact: jheff.at@gmail.com
 ```
 
 # 🔓 ROX
