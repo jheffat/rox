@@ -4,7 +4,7 @@ XOR Key Recovery Tool
 
 ROX is a Python command-line utility that recovers XOR encryption keys using known file signatures (magic headers).
 
-✨ Features
+#✨ Features
 🔑 Recover XOR encryption keys
 📂 Detect common file formats
 ⚡ Fast header analysis
