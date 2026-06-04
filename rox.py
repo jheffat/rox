@@ -45,46 +45,49 @@ def banner():
                 rox *.jpg
                 rox *.*
                 rox videoclip.mp4\n""")
-def rox(filex):
-    dic=string.ascii_letters+string.digits+"!@#$%^&*()_+-=~`[]{}|;:'\",.<>/? "
-    g=""
-    d=open(filex,"rb").read(50)
-    dik=open("dict.bin","rb") 
-    lx=[] 
-    for k  in dik:
+def rox(filename):
+    chars=string.ascii_letters+string.digits+"!@#$%^&*()_+-=~`[]{}|;:'\",.<>/? "
+    key="";keys=[] 
+    data=open(filename,"rb").read(50)
+    datadict=open("dict.bin","rb") 
+    
+    for header in datadict:
         keymatched=''
-        for c ,s in zip(d,k):
-            g=chr(c^s)
-            if g in dic:
-                keymatched+=g    
+        for e,d in zip(data,header):
+            key=chr(e^d)
+            if key in chars:
+                keymatched+=key    
         
         needle=keymatched[0:5]
         if keymatched.count(needle) > 1:
-            positions = []
+            pos= []
             start = 0
             while True:
                 idx = keymatched.find(needle, start)
                 if idx == -1:
                     break
-                positions.append(idx)
+                pos.append(idx)
                 start = idx + 1          
-            lx.append(f"🔑Encryption Key Recovered--->  {keymatched[0:positions[1]]}" )     
-    return lx
+            keys.append(f"🔑Encryption Key Recovered--->  {keymatched[0:pos[1]]}" )     
+    return keys
 def main():
     if glob("dict.bin")==0:
-        print("Error: 'dict.bin' not found. Please ensure it is in the same directory as this script.")
+        print("\n❌Error: 'dict.bin' not found. Please ensure it is in the same directory as this script.")
         exit(1)
-    g=argv
-    if len(g)==2:
-        l=glob(g[1])
+    getarg=argv
+    if len(getarg)==2:
+        l=glob(getarg[1])
         if len(l)==0:
             banner()
-            exit("\nError:No files found matching the pattern.")
+            exit("\n❌Error: No files found matching the pattern.")
         banner()
         for i in l:
+            print("\n" + "-"*80 + "\n")
             print(f" 🔍Analyzing encrypted file {i.upper()}...")
             result=rox(i)       
             print("\n".join(f"     {i}. {item}" for i, item in enumerate(result, 1)) if result else "       -No matches found.")
+            print("\n" + "-"*80 + "\n")
+        print("[📄] Analysis complete.\n")
     else:
         banner()
 
