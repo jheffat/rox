@@ -101,7 +101,7 @@ def main():
                         else "       - No matches found.")
                     
             print("-"*80 + "\n")
-        print("[📄] Analysis complete.\n")
+        print("[📄] Analysis completed.\n")
     else:
         banner()                                 
 
